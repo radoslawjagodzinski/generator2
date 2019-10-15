@@ -20,12 +20,10 @@ layout = [
     [sg.Frame('', [[sg.Column(column1, background_color='lightblue')]]),
      sg.Button('Generuj', size=(20, 1), key='generate')],
     [sg.Text('Wygenerowane hasło', size=(20, 1), auto_size_text=True, justification='right'),
-     sg.Text('                                                 ', background_color='Red', key='Wygenerowane')],
+     sg.InputText('', background_color='Red', key='Wygenerowane')],
     [sg.Text('Podaj nazwę', size=(20, 1), auto_size_text=False, justification='right'),
      sg.InputText('')],
-    [sg.Text('Wybierz folder', size=(20, 1), auto_size_text=False, justification='right'),
-     sg.InputText(''), sg.FolderBrowse('Wybór')],
-    [sg.Save('Zapisz'), sg.Cancel('Wyjście')]]
+    [sg.Save('Zapis'), sg.Button('Odczyt'), sg.Cancel('Wyjście')]]
 
 window = sg.Window('pierwszy program', layout, default_element_size=(30, 1), grab_anywhere=False)
 event, values = window.Read()
@@ -52,7 +50,7 @@ while True:
     if event in (None, 'Wyjście'):
         break
 
-    elif event in ('Generuj'):
+    elif event in ('generate'):
         while True:
             if y >= letter:
                 break
@@ -73,4 +71,15 @@ while True:
             password += str(xx)
         shuffle(password)
         finish = ''.join(password)
-        window.Element('Wygenerowane').update([finish])
+        # '''Wygenerowane hasło ma wypisać w polu wygenerowane'''
+        sg.InputText('Wygenerowane').update(values[finish])
+
+        # '''Zapis do bazy danych z nazwa'''
+    elif event in ('Zapis'):
+        pass
+
+    # '''odczyt do bazy danych'''
+    elif event in ('Odczyt'):
+        pass
+
+
