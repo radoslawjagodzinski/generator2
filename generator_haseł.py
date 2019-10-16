@@ -20,33 +20,36 @@ layout = [
     [sg.Frame('', [[sg.Column(column1, background_color='lightblue')]]),
      sg.Button('Generuj', size=(20, 1), key='generate')],
     [sg.Text('Wygenerowane hasło', size=(20, 1), auto_size_text=True, justification='right'),
-     sg.InputText('', background_color='Red', key='Wygenerowane')],
+     sg.Text('', size=(27, 1), background_color='Red', key='Wygenerowane')],
     [sg.Text('Podaj nazwę', size=(20, 1), auto_size_text=False, justification='right'),
      sg.InputText('')],
     [sg.Save('Zapis'), sg.Button('Odczyt'), sg.Cancel('Wyjście')]]
 
 window = sg.Window('pierwszy program', layout, default_element_size=(30, 1), grab_anywhere=False)
 
-event, values = window.Read()
 
 
+while True:
+    event, values = window.Read()
+    if event in (None, 'Wyjście'):
+        break
 # ----- Losowe liczby i znaki -----
-def generate(number, letter, sign):
-    number = int(values['numbers'])
-    x = 0
-    letter = int(values['letters'])
-    y = 0
-    sign = int(values['signs'])
-    z = 0
-    password = []
 
-    le = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H',
-          'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'q', 'w', 'e', 'r',
-          't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z',
-          'x', 'c', 'v', 'b', 'n', 'm']
-    nu = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    si = ['!', '@', '#', '%', '^', '&', '*']
-    if event in ('generate'):
+    if event in 'generate':
+        number = int(values['numbers'])
+        x = 0
+        letter = int(values['letters'])
+        y = 0
+        sign = int(values['signs'])
+        z = 0
+        password = []
+
+        le = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H',
+              'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'q', 'w', 'e', 'r',
+              't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z',
+              'x', 'c', 'v', 'b', 'n', 'm']
+        nu = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        si = ['!', '@', '#', '%', '^', '&', '*']
 
         while True:
             if y >= letter:
@@ -68,16 +71,31 @@ def generate(number, letter, sign):
             x += 1
             password += str(xx)
 
-    shuffle(password)
-    finish = ''.join(password)
-    return finish
+        shuffle(password)
+        finish = ''.join(password)
+        print(finish)
 
+        window.Element('Wygenerowane').Update(finish)
+    # else:
+    #     break
+window.Close()
 
-sg.InputText('Wygenerowane').update(44)
-# print(finish)
-generate(1, 1, 1)
 
 # ------Zamkniecie programu-----
+
+
+# '''Wygenerowane hasło ma wypisać w polu wygenerowane'''
+
+# '''Zapis do bazy danych z nazwa'''
+# elif event in ('Zapis'):
+#     pass
+#
+# # '''odczyt do bazy danych'''
+# elif event in ('Odczyt'):
+#     pass
+
+# ------Zamkniecie programu-----
+
 while True:
     if event in (None, 'Wyjście'):
         break
