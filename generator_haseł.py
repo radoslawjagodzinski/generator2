@@ -30,33 +30,30 @@ event, values = window.Read()
 
 
 # ----- Losowe liczby i znaki -----
-number = int(values['numbers'])
-x = 0
-letter = int(values['letters'])
-y = 0
-sign = int(values['signs'])
-z = 0
-password = []
+def generate(number, letter, sign):
+    number = int(values['numbers'])
+    x = 0
+    letter = int(values['letters'])
+    y = 0
+    sign = int(values['signs'])
+    z = 0
+    password = []
 
-le = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H',
-      'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'q', 'w', 'e', 'r',
-      't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z',
-      'x', 'c', 'v', 'b', 'n', 'm']
-nu = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-si = ['!', '@', '#', '%', '^', '&', '*']
+    le = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H',
+          'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'q', 'w', 'e', 'r',
+          't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z',
+          'x', 'c', 'v', 'b', 'n', 'm']
+    nu = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    si = ['!', '@', '#', '%', '^', '&', '*']
+    if event in ('generate'):
 
-
-while True:
-    if event in (None, 'Wyjście'):
-        break
-
-    elif event in ('generate'):
         while True:
             if y >= letter:
                 break
             yy = choice(le)
             y += 1
             password += yy
+
         while True:
             if z >= sign:
                 break
@@ -69,17 +66,24 @@ while True:
             xx = choice(nu)
             x += 1
             password += str(xx)
-        shuffle(password)
-        finish = ''.join(password)
+
+    shuffle(password)
+    finish = ''.join(password)
+    window=finish
+    print(window)
+generate(1,1,1)
+
+while True:
+    if event in (None, 'Wyjście'):
+        break
+
+window.close()
         # '''Wygenerowane hasło ma wypisać w polu wygenerowane'''
-        sg.InputText('Wygenerowane').update(values[finish])
-
-        # '''Zapis do bazy danych z nazwa'''
-    elif event in ('Zapis'):
-        pass
-
-    # '''odczyt do bazy danych'''
-    elif event in ('Odczyt'):
-        pass
-
-
+        # sg.InputText('Wygenerowane').update(values[finish])
+    # '''Zapis do bazy danych z nazwa'''
+    # elif event in ('Zapis'):
+    #     pass
+    #
+    # # '''odczyt do bazy danych'''
+    # elif event in ('Odczyt'):
+    #     pass
