@@ -26,6 +26,7 @@ layout = [
     [sg.Save('Zapis'), sg.Button('Odczyt'), sg.Cancel('Wyjście')]]
 
 window = sg.Window('pierwszy program', layout, default_element_size=(30, 1), grab_anywhere=False)
+
 event, values = window.Read()
 
 
@@ -69,21 +70,23 @@ def generate(number, letter, sign):
 
     shuffle(password)
     finish = ''.join(password)
-    window=finish
-    print(window)
-generate(1,1,1)
+    return finish
 
+
+sg.InputText('Wygenerowane').update(44)
+# print(finish)
+generate(1, 1, 1)
+
+# ------Zamkniecie programu-----
 while True:
     if event in (None, 'Wyjście'):
         break
+# '''Wygenerowane hasło ma wypisać w polu wygenerowane'''
 
-window.close()
-        # '''Wygenerowane hasło ma wypisać w polu wygenerowane'''
-        # sg.InputText('Wygenerowane').update(values[finish])
-    # '''Zapis do bazy danych z nazwa'''
-    # elif event in ('Zapis'):
-    #     pass
-    #
-    # # '''odczyt do bazy danych'''
-    # elif event in ('Odczyt'):
-    #     pass
+# '''Zapis do bazy danych z nazwa'''
+# elif event in ('Zapis'):
+#     pass
+#
+# # '''odczyt do bazy danych'''
+# elif event in ('Odczyt'):
+#     pass
