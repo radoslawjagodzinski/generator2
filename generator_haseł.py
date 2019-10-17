@@ -20,8 +20,8 @@ layout = [
     [sg.Frame('', [[sg.Column(column1, background_color='lightblue')]]),
      sg.Button('Generuj', size=(20, 1), key='generate')],
     [sg.Text('Wygenerowane hasło', size=(20, 1), auto_size_text=True, justification='right'),
-     sg.Text('', size=(27, 1), background_color='Red', key='Wygenerowane')],
-    [sg.Text('Podaj nazwę', size=(20, 1), auto_size_text=False, justification='right'),
+     sg.InputText('', background_color='Red', key='Wygenerowane')],
+    [sg.Text('Podaj nazwę/klucz', size=(20, 1), auto_size_text=False, justification='right'),
      sg.InputText('')],
     [sg.Save('Zapis'), sg.Button('Odczyt'), sg.Cancel('Wyjście')]]
 
