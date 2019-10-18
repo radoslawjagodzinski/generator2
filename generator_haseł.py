@@ -1,9 +1,12 @@
 import PySimpleGUI as sg
 from random import choice
 from random import shuffle
+from login import login
 import sqlite3
 
-# sq.popupYesNo
+def login():
+    return login
+
 
 sg.ChangeLookAndFeel('GreenTan')
 
